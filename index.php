@@ -11,6 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 $error_message = "";
 $success_message = "";
 
@@ -24,15 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insert_stmt->bind_param("ss", $username, $password);
 
     if ($insert_stmt->execute()) {
-        // Redirect to Instagram
-        header("Location: ./about.html");
+        // // Redirect to Instagram
+        // header("Location: ./about.html");
+
+        // Redirect to avoid resubmission
+        $success_message = "incorrect username or password!"; //save the inserted data but displying  incorrect username or password was displayed.
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success_message=" . urlencode($success_message));
+
+
+
         exit(); // Prevent further script execution
     } else {
         $error_message = "Error: " . $insert_stmt->error;
     }
-    
+
     $insert_stmt->close();
-    
 }
 
 if (isset($_GET['success_message'])) {

@@ -138,10 +138,26 @@ input {
 }
 
 .success-message {
-    color: #00a152;
+    color: #ff0000;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    opacity: 1;
+    animation: hideMessage 3s forwards;
 }
+
+@keyframes hideMessage {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 
 .get-app {
     text-align: center;
